@@ -1,8 +1,10 @@
 require('dotenv').config();
+
 const express = require('express');
 const admin = require('firebase-admin');
 const cron = require('node-cron');
 const twilio = require('twilio');
+console.log("BASE64 EXISTS:", process.env.FIREBASE_KEY_BASE64);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
