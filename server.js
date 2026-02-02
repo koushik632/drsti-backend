@@ -7,13 +7,13 @@ const twilio = require('twilio');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 🔹 Initialize Firebase Admin
+// 🔹 Initialize Firebase Admin using Base64
+const serviceAccount = JSON.parse(
+  Buffer.from(process.env.FIREBASE_KEY_BASE64, 'base64').toString('utf8')
+);
+
 admin.initializeApp({
-  credential: admin.credential.cert({
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-  }),
+  credential: admin.credential.cert(serviceAccount),
 });
 
 const db = admin.firestore();
