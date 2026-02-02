@@ -9,7 +9,9 @@ const PORT = process.env.PORT || 3000;
 
 // 🔹 Initialize Firebase Admin
 admin.initializeApp({
-  credential: admin.credential.cert(require('./serviceAccountKey.json')),
+  credential: admin.credential.cert(
+    JSON.parse(process.env.FIREBASE_KEY)
+  ),
 });
 
 const db = admin.firestore();
